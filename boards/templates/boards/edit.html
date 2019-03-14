@@ -5,7 +5,7 @@
 
 {% block body %} 
 <h1>EDIT</h1>
-<form action = "{% url 'boards:update' board.pk %}" method = 'POST'>
+<form  method = 'POST'>
     {% csrf_token %}
     <label for="title">TITLE</label>
     <input type="text" name="title" value='{{board.title}}' id ='title'/><br>
