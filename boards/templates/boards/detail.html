@@ -7,10 +7,12 @@
 
 <h1>DETAIL</h1>
 <hr>
+
+
 <h2>{{ board.id }}번째 글</h2>
-<p>{{ board.title }}</p>
+<h2>{{ board.title }}</h2>
 <p>{{ board.content }}</p>
-<p>{{ board.create_at | timesince }}전</p>
+<p>{{ board.created_at | timesince }}전</p>
 <p>{{ board.updated_at | timesince }}전</p>
 
 <a href="{% url 'boards:index' %}">BACK</a>
@@ -22,4 +24,27 @@
     <input type="submit" value="삭제"/>
 </form>
 
+
+<hr>
+<h2>댓글</h2>
+{%for comment in comments %}
+<li>{{ comment.content }}
+<form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method = "POST" style = 'display:inline' onsubmit = 'return confirm("U SURE????");'>
+    {% csrf_token %}
+    <input type="submit" value="삭제"/>
+</form>
+</li>
+{% endfor %}
+
+
+<hr>
+
+<h2>댓글 작성</h2>
+<form action="{% url 'boards:comments_create' board.pk %}" method="POST">
+    {% csrf_token %}
+    comment: <input type="text" name="content">
+    <input type="submit" value="submit">
+</form>
+
 {% endblock %}
+
