@@ -26,7 +26,8 @@ def new(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
-        board = Board(title = title, content=content)
+        image = request.FILES.get('image')
+        board = Board(title = title, content=content, image = image)
         board.save()
         return redirect('boards:detail',board.id)
     #new 일때

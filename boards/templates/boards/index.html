@@ -1,9 +1,14 @@
 {% extends 'boards/base.html' %}
+{% load static %}
 
 {% block title %} INDEX
 {% endblock %}
 
+
 {% block body %} 
+<h1>INDEX</h1>
+<hr>
+<img src="{% static 'twice.png' %}" alt = "twice"></img><br>
 
 <a href="{% url 'boards:new' %}">글작성하기</a>
 <hr>
